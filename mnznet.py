@@ -47,7 +47,7 @@ class MinimizerNet(nn.Module):
     def density(self, score, eps=1.0):
         val, idx = self.maxpool(score + eps)
         loc = self.unpool(val, idx, output_size=score.shape)
-        minimizer = loc / ((loc == 0) + loc)
+        minimizer = loc / ((loc == 0).float() + loc)
         density = (torch.sum(minimizer, dim=-1) / score.shape[-1]) * (self.w + 1)
         avg_density = torch.mean(density).detach().cpu().numpy()
         del val, idx, loc
@@ -62,7 +62,8 @@ class CosLayer(nn.Module):
         self.d = nn.Parameter(torch.tensor(shift), requires_grad=False)
 
     def forward(self, x):
-        return self.a * torch.cos(self.p * (x + self.d))
+        t = self.p * (x + self.d)
+        return self.a * torch.cos(t.float())
 
 
 class SeqConvNet(nn.Module):

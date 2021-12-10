@@ -85,7 +85,6 @@ DIV_FUNC = {
     'maxpool_delta': lambda w: lambda score, target: maxpool_delta_div(score, target, w)
 }
 
-
 def vary_k_pasha_fix(w=14, dev=0, exp_name='chrx'):
     k_values = [6, 8, 10, 12, 14]
     for k in k_values:
@@ -167,7 +166,7 @@ def control(w=14, k=25, dev=0, seq='chr1', method='miniception'):
 
 
 if __name__ == '__main__':
-    exp(w=13, k=8, dev=0, seq='chrXC', save_path='results_set3')
+    exp(w=13, k=8, dev=0, seq='chrXC', save_path='results')
 
 
 

@@ -21,7 +21,7 @@ import random
 from urllib import request
 chmap = {'C': 0, 'G': 1, 'A': 2, 'T': 3}
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-SEQ_DIR = './'
+SEQ_DIR = '/home/hongyuz/src/anchorsets/'
 
 def state_dict_to_tensor(state_dict):
     return torch.cat([t.view(-1) for t in state_dict.values()])
